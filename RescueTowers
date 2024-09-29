@@ -1,0 +1,108 @@
+from hub import light_matrix, motion_sensor, port
+import runloop
+import motor_pair
+from app import display
+import motor
+
+# declare constants
+ROTATION_TO_CM = 28 #17.2787595947
+#right attachment is port D and Left attachment is port E
+WHEELRIGHTPORT= port.F
+WHEELLEFTPORT = port.C
+FRONTATTACMENTPORT = port.E
+REARATTACHMENTPORT = port.D
+TURNFACTOR = 1.66
+
+#####################################################################
+# Method to convert distance from inch to rotation degrees on motor
+#####################################################################
+def convertcmToDegree(cm):
+    return int(360/( ROTATION_TO_CM ) * cm )
+
+
+#####################################################################
+# convert actual degree to motor specification
+#####################################################################
+def turnDegree(angle):
+    return int(( TURNFACTOR ) * angle )
+
+
+
+#####################################################################
+# perform rescue tower
+#####################################################################
+async def rescueTower():
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-42), 500 , 500)
+    runloop.sleep_ms(1000)
+
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-28 ), 200, -200)
+    runloop.sleep_ms(1000)
+
+
+
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-5), 500 , 500)
+    runloop.sleep_ms(1000)
+
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(65 ), 1000, -1000)
+    runloop.sleep_ms(1000)
+
+
+
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-12), 500 , 500)
+    runloop.sleep_ms(1000)
+
+    await motor.run_for_degrees(FRONTATTACMENTPORT,-360,250)
+
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(15), 500 , 500)
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-25 ), 1000, -1000)
+    runloop.sleep_ms(1000)
+
+    await motor.run_for_degrees(FRONTATTACMENTPORT,360,250)
+
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-8), 500 , 500)
+
+    await motor.run_for_degrees(FRONTATTACMENTPORT,-360,500)
+'''  
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-20 ), 200, -200)
+    runloop.sleep_ms(1000)
+
+    motor_pair.move_tank_for_degrees(0, convertcmToDegree(4), 100 , 100)
+
+    motor.run_for_degrees(FRONTATTACMENTPORT,400,250)
+'''
+
+
+
+
+
+#####################################################################
+# perform mission 2
+#####################################################################
+async def mission2():
+
+    #forward in front drive
+    await motor_pair.move_tank_for_degrees(0,convertcmToDegree(28), 500, 500)
+    motor_pair.stop
+
+
+    #turn left degrees
+    await motor_pair.move_tank_for_degrees(0, turnDegree(70), -100, 100)
+    runloop.sleep_ms(1000)
+
+
+#####################################################################
+# Main code
+#####################################################################
+async def main():
+    # Set Motor pair1
+    motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
+
+    await rescueTower()
+#    await mission2()
+
+
+
+runloop.run(main())
