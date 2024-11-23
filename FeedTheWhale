@@ -1,0 +1,65 @@
+from hub import light_matrix, motion_sensor, port
+import runloop
+import motor_pair
+from app import display
+import motor
+
+# declare constants
+ROTATION_TO_CM = 28 #17.2787595947
+ROTATION_TO_INCH = 11 #7
+#right attachment is port D and Left attachment is port E
+WHEELRIGHTPORT= port.F
+WHEELLEFTPORT = port.B
+FRONTATTACMENTPORT = port.A
+REARATTACHMENTPORT = port.E
+TURNFACTOR = 1.66
+
+#####################################################################
+# Method to convert distance from inch to rotation degrees on motor
+#####################################################################
+def convertcmToDegree(cm):
+    return int(360/( ROTATION_TO_CM ) * cm )
+
+#####################################################################
+# convert actual degree to motor specification
+#####################################################################
+def turnDegree(angle):
+    return int(( TURNFACTOR ) * angle )
+
+async def test():
+    await motor.run_for_degrees(REARATTACHMENTPORT, 500,1000)
+    await motor.run_for_degrees(REARATTACHMENTPORT,-2800,1000)
+    # Sonar
+
+
+async def FeedtheWhale():
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 200 , 200)
+    #runloop.sleep_ms(300)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-10), 200, -200)
+    runloop.sleep_ms(250)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(68), 400 , 400)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(45), 200, -200)
+    runloop.sleep_ms(250)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(23), 800 , 800)  
+    #await motor_pair.move_tank_for_degrees(0, convertcmToDegree(1), 200 , 200)
+    runloop.sleep_ms(7000)  
+    # Feed the Whale
+    
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 400 , 400)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-45), 200, -200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(18), 400 , 400)
+    
+    await motor.run_for_degrees(REARATTACHMENTPORT, 500,1000)
+    await motor.run_for_degrees(REARATTACHMENTPORT,-2800,1000)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-5), 200, -200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-90), 500 , 500)
+    # Sonar
+    
+
+async def main():
+    # Set Motor pair1
+    motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)    
+    await FeedtheWhale()
+    #await test()
+
+runloop.run(main())
