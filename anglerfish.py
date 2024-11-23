@@ -45,18 +45,27 @@ async def main():
 
     await motor_pair.move_tank_for_degrees(0, turnDegree(-45), 200, -200)
     runloop.sleep_ms(1000)
-    
+
     await motor_pair.move_tank_for_degrees(0,convertInchToDegree(12), 500, 500)
 
     await motor_pair.move_tank_for_degrees(0,convertInchToDegree(-4), 500, 500)
-
     await motor_pair.move_tank_for_degrees(0, turnDegree(-45), 200, -200)
-    runloop.sleep_ms(1000)
-
-    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(7), 500, 500)
-
+    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(5), 500, 500)
     await motor_pair.move_tank_for_degrees(0, turnDegree(42), 200, -200)
-    runloop.sleep_ms(1000)
+    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(16), 1000, 1000)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-10), 200, -200)
+    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(4), 1000, 1000)
 
-    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(20), 1000, 1000)
+    # end of angler fish
+    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(4), 1000, 1000)
+
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(100), 500, -500)
+
+    await motor_pair.move_tank_for_degrees(0,convertInchToDegree(3), 1000, 1000)
+    await motor.run_for_degrees(REARATTACHMENTPORT,-120,250)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-20), 500, -500)
+    await motor.run_for_degrees(REARATTACHMENTPORT,400,250)
+    runloop.sleep_ms(2000)
+
 runloop.run(main())
