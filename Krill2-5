@@ -1,0 +1,107 @@
+from hub import light_matrix, motion_sensor, port
+import runloop
+import motor_pair
+from app import display
+import motor
+import color_matrix
+
+# declare constants
+ROTATION_TO_CM = 28 #17.2787595947
+ROTATION_TO_INCH = 11 #7
+WHEELRIGHTPORT= port.F
+WHEELLEFTPORT = port.B
+FRONTATTACMENTPORT = port.A
+REARATTACHMENTPORT = port.E
+TURNFACTOR = 1.66
+
+
+#####################################################################
+# Method to convert distance from inch to rotation degrees on motor
+#####################################################################
+def convertcmToDegree(cm):
+    return int(360/( ROTATION_TO_CM ) * cm )
+
+
+#####################################################################
+# convert distance from inch to rotation degrees on motor
+#####################################################################
+def convertInchToDegree(inch):
+    return int ( ( 360 / ROTATION_TO_INCH ) * inch)
+#####################################################################
+# convert actual degree to motor specification
+#####################################################################
+def turnDegree(angle):
+    return int(( TURNFACTOR ) * angle )
+
+
+#####################################################################
+# Main code
+#####################################################################
+async def main():
+    # Set Motor pair1
+    motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
+    #Krill start    
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(70), 500 , 500)
+    #Krill 2
+    await motor_pair.move_tank_for_degrees(0, turnDegree(70), 200, -200)
+    runloop.sleep_ms(1000)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(30), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(23), 200, -200)
+    runloop.sleep_ms(1000)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(83), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(4), 200 , 200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-5), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 500 , 500)
+#Krill 3
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-17), 200, -200)
+    runloop.sleep_ms(300)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(13), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(6), 200 , 200)
+#Krill 4
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-24), 200 , 200)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(15), 200, -200)
+    runloop.sleep_ms(300)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(17), 200 , 200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(9), 200 , 200)
+#Plankton    
+
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-20), 200 , 200)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(75), 200, -200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(60), 500 , 500)
+## Krill 5 and go home    
+#await motor_pair.move_tank_for_degrees(0, turnDegree(-10), 200, -200)
+#runloop.sleep_ms(1000)
+
+#await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 500 , 500)
+
+
+
+# #Krill 4
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-6), 500 , 500)
+
+
+#    await motor_pair.move_tank_for_degrees(0, turnDegree(120), 200, -200)
+#    runloop.sleep_ms(1000)
+
+
+
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(6), 500 , 500)
+
+#    await motor_pair.move_tank_for_degrees(0, turnDegree(-10), 200, -200)
+#    runloop.sleep_ms(1000)
+
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(6), 500 , 500)
+
+#    await motor_pair.move_tank_for_degrees(0, turnDegree(-45), 200, -200)
+#    runloop.sleep_ms(1000)
+
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 500 , 500)
+
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-20), 500 , 500)
+
+#    await motor_pair.move_tank_for_degrees(0, turnDegree(-45), 200, -200)
+#    runloop.sleep_ms(1000)
+#    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(50), 500 , 500)
+
+
+runloop.run(main())
