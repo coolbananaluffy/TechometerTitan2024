@@ -1,9 +1,5 @@
-from hub import light_matrix, motion_sensor, port
-import runloop
-import motor_pair
-from app import display
-import motor
 
+<<<<<<< HEAD
 # declare constants
 ROTATION_TO_CM = 28 #17.2787595947
 #right attachment is port D and Left attachment is port E
@@ -70,3 +66,5 @@ async def main():
     '''
 
 runloop.run(main())
+=======
+>>>>>>> 8de8167f3e5519ab8c266adcc835d452908bd9e9
