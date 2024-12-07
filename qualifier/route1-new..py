@@ -50,27 +50,12 @@ async def main():
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 800 , 800)
     await motor_pair.move_tank_for_degrees(0, turnDegree( -28 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)
+    runloop.sleep_ms(500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(1), 800 , 800)
+    runloop.sleep_ms(500)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-5), 800 , 800)
     await motor_pair.move_tank_for_degrees(0, turnDegree( -120 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(40), 800 , 800)
-    #await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)
-
-    '''
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-15), 400 , 400)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 90 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(15), 800 , 800)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-28), 400 , 400)
-    #fifth krill collected
-    await motor_pair.move_tank_for_degrees(0, turnDegree( -20 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(18), 400 , 400)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 60 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(13), 400 , 400)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 400 , 400)
-    #sample collected
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 90 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(55), 800 , 800)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( -90 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(20), 400 , 400)
-    '''
+    #await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)  
 
 runloop.run(main())
