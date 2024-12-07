@@ -26,19 +26,27 @@ def turnDegree(angle):
     return int(( TURNFACTOR ) * angle )
 
 #####################################################################
-# perform rescue tower
+# perform life lane
+#####################################################################
+async def lifelane():
+    motor.run_for_degrees(FRONTATTACMENTPORT,100, 500)
+    motor_pair.move_tank_for_degrees(0, convertcmToDegree(-15), 500 , 500)
+
+#####################################################################
+# perform shipping lane
 #####################################################################
 async def BoatThingy():
     await motor_pair.move_tank_for_degrees(0, turnDegree(25), 200, -200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(23), 500 , 500)
     await motor.run_for_degrees(FRONTATTACMENTPORT,-150, 500)
     await motor_pair.move_tank_for_degrees(0, turnDegree(28), 200, -200)
-    motor.run_for_degrees(FRONTATTACMENTPORT,100, 500)
-    motor_pair.move_tank_for_degrees(0, convertcmToDegree(-15), 500 , 500)
-    await motor.run_for_degrees(FRONTATTACMENTPORT,-100, 500)
-    motor_pair.move_tank_for_degrees(0, turnDegree(-250), 200, -200)
-    motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 500 , 500)
-    
+    await lifelane()
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-200), 500 , 500)
+
+    #await motor.run_for_degrees(FRONTATTACMENTPORT,-100, 500)
+    #motor_pair.move_tank_for_degrees(0, turnDegree(-250), 200, -200)
+    #motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 500 , 500)
+
 
 #####################################################################
 # Main code
@@ -47,5 +55,6 @@ async def main():
     # Set Motor pair1
     motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
     await BoatThingy()
+    await lifelane()
 
 runloop.run(main())
