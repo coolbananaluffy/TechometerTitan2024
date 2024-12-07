@@ -40,6 +40,13 @@ def turnDegree(angle):
 async def main():
     # Set Motor pair1
     motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
+    
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-25), 20, -20)
+    runloop.sleep_ms(1000) 
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(27), 100, -100)
+    runloop.sleep_ms(1000)
 
     await motor_pair.move_tank_for_degrees(0,convertcmToDegree(70), 1000, 1000)
 
@@ -48,10 +55,15 @@ async def main():
 
     await motor_pair.move_tank_for_degrees(0,convertcmToDegree(8), 500, 500)
     await motor_pair.move_tank_for_degrees(0,convertcmToDegree(-15), 500, 500)
-    await motor_pair.move_tank_for_degrees(0, turnDegree(25), 200, -200)  
+    await motor_pair.move_tank_for_degrees(0, turnDegree(25), 200, -200)
     await motor_pair.move_tank_for_degrees(0,convertcmToDegree(40), 500, 500)
     await motor_pair.move_tank_for_degrees(0, turnDegree(45), 200, -200)
     await motor_pair.move_tank_for_degrees(0,convertcmToDegree(70), 500, 500)
+
+    await motor_pair.move_tank_for_degrees(0, turnDegree(45), 200, -200)
+    
+    await motor_pair.move_tank_for_degrees(0,convertcmToDegree(70), 500, 500)
+
 
 
 
