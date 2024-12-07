@@ -29,27 +29,32 @@ def turnDegree(angle):
 async def main():
     motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 800 , 800)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 12 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(45), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( 15 ), 200,-200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(35), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 200 , 200)
     await motor_pair.move_tank_for_degrees(0, turnDegree( 25 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( -25 ), 200,-200)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( -28 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(15), 800 , 800)
     #krills 3,4 +coral 3 collected
-    await motor_pair.move_tank_for_degrees(0, turnDegree( -12 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 800 , 800)
-    await motor.run_for_degrees(FRONTATTACMENTPORT, -45, 500)
+    #await motor_pair.move_tank_for_degrees(0, turnDegree( -5 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(8), 800 , 800)
+    await motor.run_for_degrees(FRONTATTACMENTPORT, -45, 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 800 , 800)
     await motor.run_for_degrees(FRONTATTACMENTPORT, -60, 500)
     await motor.run_for_degrees(FRONTATTACMENTPORT, 75, 500)
     # Move out after flipping corals
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-18), 800 , 800)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( -30 ), 200,-200)
-    await motor.run_for_degrees(REARATTACHMENTPORT, -120, 500)
-    # Whale released
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-24), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( -45 ), 200,-200)
+    await motor.run_for_degrees(REARATTACHMENTPORT, -150, 500)
+    # Whale released
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( -28 ), 200,-200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-5), 800 , 800)
     await motor_pair.move_tank_for_degrees(0, turnDegree( -120 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(40), 800 , 800)
     #await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)
+
     '''
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-15), 400 , 400)
     await motor_pair.move_tank_for_degrees(0, turnDegree( 90 ), 200,-200)
@@ -62,7 +67,6 @@ async def main():
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(13), 400 , 400)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 400 , 400)
     #sample collected
-
     await motor_pair.move_tank_for_degrees(0, turnDegree( 90 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(55), 800 , 800)
     await motor_pair.move_tank_for_degrees(0, turnDegree( -90 ), 200,-200)
