@@ -46,7 +46,7 @@ async def main():
     await motor_pair.move_tank_for_degrees(0, turnDegree(-47), 200, -200)
     runloop.sleep_ms(1000)
 
-    await motor_pair.move_tank_for_degrees(0,convertcmToDegree(63.5), 500, 500)
+    await motor_pair.move_tank_for_degrees(0,convertcmToDegree(64.5), 500, 500)
 
     await motor.run_for_degrees(REARATTACHMENTPORT,-800,500)
 
