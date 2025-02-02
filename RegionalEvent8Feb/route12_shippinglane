@@ -28,13 +28,19 @@ def turnDegree(angle):
 
 async def main():
     motor_pair.pair(motor_pair.PAIR_1, WHEELRIGHTPORT, WHEELLEFTPORT)
-    await motor.run_for_degrees(REARATTACHMENTPORT,500,500)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(35), 500 , 500)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 35 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(12), 500 , 500)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 75 ), 200,-200)
+    #await motor.run_for_degrees(REARATTACHMENTPORT,500,500
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(10), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-12), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(37), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( 37 ), 200,-200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(12), 200 , 200)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( 50 ), 200,-200)
+    ## Shipping lane completed
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-20), 500 , 500)
-    await motor_pair.move_tank_for_degrees(0, turnDegree( 90 ), 200,-200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 500 , 500)
+    await motor_pair.move_tank_for_degrees(0, turnDegree( 70 ), 200,-200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-25), 500 , 500)    
+    ## Unnamed creature released
+    await motor_pair.move_tank_for_degrees(0, turnDegree( 30 ), 200,-200)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(45), 500 , 500)
+    
 runloop.run(main())
