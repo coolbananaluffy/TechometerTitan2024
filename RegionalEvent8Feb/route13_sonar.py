@@ -31,10 +31,9 @@ def turnDegree(angle):
 async def Sonar():
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(55), 800 , 800)
     #runloop.sleep_ms(300)
-    await motor_pair.move_tank_for_degrees(0, turnDegree(-35), 200, -200)
-    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(30), 800 , 800)
+    await motor_pair.move_tank_for_degrees(0, turnDegree(-32), 200, -200)
+    await motor_pair.move_tank_for_degrees(0, convertcmToDegree(33), 800 , 800)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(5), 800 , 800)
-
     await motor.run_for_degrees(FRONTATTACMENTPORT,300,1000)
     await motor.run_for_degrees(FRONTATTACMENTPORT,-1800,1000)
     await motor_pair.move_tank_for_degrees(0, convertcmToDegree(-8), 800 , 800)
